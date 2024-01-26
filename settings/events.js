@@ -1,6 +1,1 @@
-PlayMarioJas.PlayMarioJas.settings.events = {
-    "keyOnClassCycleStart": "onThingAdd",
-    "keyDoClassCycleStart": "placed",
-    "keyCycleCheckValidity": "alive",
-    "timingDefault": 9
-};
+PlayMarioJas.PlayMarioJas.settings.events={keyOnClassCycleStart:"onThingAdd",keyDoClassCycleStart:"placed",keyCycleCheckValidity:"alive",timingDefault:9};
