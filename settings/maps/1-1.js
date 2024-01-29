@@ -7,7 +7,7 @@ PlayMarioJas.PlayMarioJas.settings.maps.library["1-1"] = {
     ],
     "areas": [
         {
-            "setting": "Overworld",
+            "setting": "Over",
             "blockBoundaries": true,
             "creation": [
                 { "macro": "Pattern", "pattern": "BackRegular", "repeat": 5 },

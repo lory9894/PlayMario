@@ -582,6 +582,8 @@ var __extends = this && this.__extends || function(e, t) {
         }, t.prototype.collideDetector = function(e, t) {
             return e.player ? (t.activate(e, t), void(t.noActivateDeath || e.FSM.killNormal(t))) : void(t.activateFail && t.activateFail(e))
         }, t.prototype.collideLevelTransport = function(e, t) {
+            console.log("VINTO!")
+            /*
             if (e.player) {
                 var n = t.transport;
                 if ("undefined" == typeof n) throw new Error("No transport given to collideLevelTransport");
@@ -592,6 +594,8 @@ var __extends = this && this.__extends || function(e, t) {
                     e.FSM.setLocation(n.location)
                 }
             }
+             */
+
         }, t.prototype.moveSimple = function(e) {
             e.direction !== (e.moveleft ? 1 : 0) && (e.moveleft ? (e.xvel = -e.speed, e.noflip || e.FSM.unflipHoriz(e)) : (e.xvel = e.speed, e.noflip || e.FSM.flipHoriz(e)), e.direction = e.moveleft ? 1 : 0)
         }, t.prototype.moveSmart = function(e) {
@@ -717,7 +721,7 @@ var __extends = this && this.__extends || function(e, t) {
             var t, n, i, o, r = e.FSM.unitsize;
             for (o = 0; 4 > o; o += 1) n = e.left + Number(2 > o) * e.width * r - 2 * r, i = e.top + o % 2 * e.height * r - 2 * r, t = e.FSM.addThing("BrickShard", n, i), t.xvel = t.speed = r / 2 - r * Number(o > 1), t.yvel = -1.4 * r + o % 2, e.FSM.TimeHandler.addEvent(e.FSM.killNormal, 70, t)
         }, t.prototype.animateEmerge = function(e, t) {
-            e.nomove = e.nocollide = e.nofall = e.alive = !0, e.FSM.flipHoriz(e), e.FSM.AudioPlayer.play("PowerupAppears"), e.FSM.arraySwitch(e, e.FSM.GroupHolder.getGroup("Character"), e.FSM.GroupHolder.getGroup("Scenery")), e.FSM.TimeHandler.addEventInterval(function() {
+            e.nomove = e.nocollide = e.nofall = e.alive = !0, e.FSM.flipHoriz(e), e.FSM.AudioPlayer.play("PApp"), e.FSM.arraySwitch(e, e.FSM.GroupHolder.getGroup("Character"), e.FSM.GroupHolder.getGroup("Scenery")), e.FSM.TimeHandler.addEventInterval(function() {
                 return e.FSM.shiftVert(e, e.FSM.unitsize / -8), e.bottom > t.top ? !1 : (e.FSM.setBottom(e, t.top), e.FSM.GroupHolder.switchMemberGroup(e, "Scenery", "Character"), e.nomove = e.nocollide = e.nofall = e.moveleft = !1, e.emergeOut && e.emergeOut(e, t), e.movement && (e.movementOld = e.movement, e.movement = e.FSM.moveSimple, e.FSM.TimeHandler.addEventInterval(function() {
                     return e.resting === t ? !1 : (e.FSM.TimeHandler.addEvent(function() {
                         e.movement = e.movementOld
@@ -1062,7 +1066,9 @@ var __extends = this && this.__extends || function(e, t) {
         }, t.prototype.cutsceneFlagpoleHitBottom = function(e, t) {
             var n = t.player;
             n.keys.run = 1, n.maxspeed = n.walkspeed, n.FSM.flipHoriz(n), n.FSM.shiftHoriz(n, (n.width + 1) * n.FSM.unitsize), n.FSM.TimeHandler.addEvent(function() {
-                n.FSM.AudioPlayer.play("StageClear"), n.FSM.animatePlayerOffPole(n, !0)
+                n.FSM.AudioPlayer.play("SC"), n.FSM.animatePlayerOffPole(n, !0),
+                    console.log("vinto?")
+
             }, 14)
         }, t.prototype.cutsceneFlagpoleCountdown = function(e, t) {
             e.TimeHandler.addEventInterval(function() {
@@ -1647,7 +1653,6 @@ var __extends = this && this.__extends || function(e, t) {
             var a, l = e.x || 0,
                 p = e.y || 0,
                 s = "EndOutsideCastle-" + [e.x, e.y, e.large].join(",");
-                console.log("level completed")
             return a = [{
                 thing: "DetectCollision",
                 x: l,
